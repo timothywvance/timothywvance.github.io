@@ -1,0 +1,7 @@
+id,name,type,category,new
+families_under_5,Families with Children Under 5,County,Demographics,
+Pop_16,Population 16 and Over,County,Demographics,
+juv_arrest,Juvenile Arrests,County,Child Health & Wellbeing,
+births_single,Births to Single Mothers,County,Child Health & Wellbeing,
+farms,Free and Reduced Price Meals,County,Child Health & Wellbeing,
+child_pov,Children in Poverty,County,Demographics,

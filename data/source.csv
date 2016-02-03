@@ -1,0 +1,7 @@
+layer,source,url
+families_under_5,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+Pop_16,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+juv_arrest,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+births_single,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+farms,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+child_pov,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
