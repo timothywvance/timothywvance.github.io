@@ -1,4 +1,4 @@
 gis_id,NAME,NBH_NAMES,NCID,population_total_val,families_under_5,Pop_16,juv_arrest,births_single,farms,child_pov
-Cnty2,Sussex,Sussex County,2,210849,0.174,173964,83,0.566,0.611,0.239
-Cnty0,Kent,Kent County,0,171987,0.181,135142,100,0.45,0.476,0.239
-Cnty1,New Castle,New Castle County,1,552778,0.125,445120,371,0.454,0.5,0.185
+Nbclus_002,Sussex,Sussex County,2,210849,0.174,173964,83,0.566,0.611,0.239
+Nbclus000,Kent,Kent County,0,171987,0.181,135142,100,0.45,0.476,0.239
+Nbclus_001,New Castle,New Castle County,1,552778,0.125,445120,371,0.454,0.5,0.185
