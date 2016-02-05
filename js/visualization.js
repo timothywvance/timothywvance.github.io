@@ -3,9 +3,9 @@ var hash = window.location.hash;
 var COUNT_SCHOOL_DISPLAY = 3;
 
 var centered;
-//edit activeID, var highlightedNeighborhood *************************************
+
 var svg, projection, gmapProjection, path, g, gmap;
-var activeId = 'de',
+var activeId = 'dc',
     choropleth_data, source_data;
 var all_data = {}, activeData = "population_total";
 var min_population = 100;
@@ -19,9 +19,9 @@ var scale = d3.scale.linear().domain([0, 1]).range([h, 0]);
 var ord_scale = d3.scale.ordinal().domain(["Under 18", "Over 18"]).range([0, w]);
 var color = d3.scale.category20();
 var dotRadius = 4;
-///edit neighborhood to county********************
+
 var currentMetric = null;
-var highlightedCounty = null;
+var highlightedNeighborhood = null;
 
 var gmap_style=[
   {
@@ -76,7 +76,7 @@ var gmap_style=[
       { "color": "#cfddff" }
     ]
   },{
-     "featureType": "administrative.county",
+     "featureType": "administrative.neighborhood",
      "elementType": "labels.text",
      "stylers": [
       { "visibility": "off" }
@@ -137,36 +137,36 @@ function transform(d) {
         .style("left", (d.x - 2) + "px")
         .style("top", (d.y - 2) + "px");
 }
-    ////***New data**///
+
 function drawChoropleth(){
-      //Edit file names**********************************
+
   queue()
     .defer(d3.csv, "data/fields.csv")
-    .defer(d3.json, "data/de_counties.json")
-    .defer(d3.csv, "data/counties.csv")
+    .defer(d3.json, "data/neighborhoods44.json")
+    .defer(d3.csv, "data/neighborhoods.csv")
     .defer(d3.csv, "data/source.csv")
     .await(setUpChoropleth);
 
-  function setUpChoropleth(error, fields, de, choropleth, source) {
+  function setUpChoropleth(error, fields, dc, choropleth, source) {
     populateNavPanel(fields);
-// edit gis_id to geoid**************
+
     //clean choropleth data for display.
     choropleth_data = choropleth;
     source_data = source;
     choropleth_data.forEach(function(d) {
-      all_data[d.geoid] = d;
-      choropleth_data[d.geoid] = +d.population_total;
+      all_data[d.gis_id] = d;
+      choropleth_data[d.gis_id] = +d.population_total;
     });
-    ///edit all_data, GEOID, ***********************************
-    all_data.de = {
-      GEOID: "Deleware",
-      population_total_val: ,
-      population_under_18_val: ,
-      single_mother_families_perc: ,
-      children_in_poverty_perc: 
+
+    all_data.dc = {
+      NBH_NAMES: "Washington, DC",
+      population_total_val: 633736,
+      population_under_18_val: 107989,
+      single_mother_families_perc: 0.4263,
+      children_in_poverty_perc: 0.275
     };
-      //Edit LatLng***************************************************
-     displayPopBox();
+
+    displayPopBox();
 
     gmap = new google.maps.Map(d3.select("#content").node(), {
       zoom: 12,
@@ -198,7 +198,10 @@ function drawChoropleth(){
       });
     });
 
-
+    // var dcBounds = new google.maps.LatLngBounds(
+    //   new google.maps.LatLng(38.791,-77.12),
+    //   new google.maps.LatLng(38.996,-76.909)
+    // );
 
     // Using this hack-y solution as fitBounds frequently produces maps that are too small.
 
@@ -208,10 +211,10 @@ function drawChoropleth(){
       containerHeight < 250 ? 10 :
       containerHeight < 520 ? 11 : 12
     );
-    // *** Change Lat Long ***  
+
     var maxBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(39.87,-75.88),
-      new google.maps.LatLng(38.39,-74.78)
+      new google.maps.LatLng(38.39,-75.88),
+      new google.maps.LatLng(39.87,-74.78)
     );
 
     // If a drag ends outside of our max bounds, bounce back to the default center.
@@ -248,9 +251,9 @@ function drawChoropleth(){
 
       var svg = layer.append("svg")
       .attr("id","theSVGLayer");
-         //edit neighborhood to county********************
+
       g = svg.append("g");
-      var counties = g.append("g").attr("id", "county");
+      var neighborhoods = g.append("g").attr("id", "neighborhoods");
       g.append("g").attr("id", "points");
       d3.select("#legend-container").append("svg")
           .attr("height", 200)
@@ -270,36 +273,36 @@ function drawChoropleth(){
         };
 
         path = d3.geo.path().projection(gmapProjection);
-         //edit .data(dc.features), attr("class" "county"), .on("click", function(d) { highlightNeigborhood(d, false); }) --- All neihborhood to county***********************
+
         // Have to remove all the paths and readd them otherwise the visualization was highlighting the old path
         // and the new path when zooming.
-        counties.selectAll("path").remove();
-        counties.selectAll("path")
-          .data(de.features)
+        neighborhoods.selectAll("path").remove();
+        neighborhoods.selectAll("path")
+          .data(dc.features)
           .enter().append("path")
           .attr("d", path)
-          .attr("id", function (d) { return "path" + d.properties.CID; })
-          .attr("class", "cnty")
-          .on("mouseover", hoverCounty)
+          .attr("id", function (d) { return "path" + d.properties.NCID; })
+          .attr("class", "nbhd")
+          .on("mouseover", hoverNeighborhood)
           .on("mouseout", function () {
             if ($("path.active").length === 0) {
-              activeId = 'de';
+              activeId = 'dc';
               $("#visualized-measure").text("");
               displayPopBox();
             }
           })
-          .on("click", function(d) { highlightCounty(d, false); })
+          .on("click", function(d) { highlightNeigborhood(d, false); })
           .style("fill",function(d) {
-            if (currentMetric === null || all_data[d.properties.geoid][currentMetric] === '0') { return defaultColor; }
-            else { return choro_color(all_data[d.properties.geoid][currentMetric]); }
+            if (currentMetric === null || all_data[d.properties.gis_id][currentMetric] === '0') { return defaultColor; }
+            else { return choro_color(all_data[d.properties.gis_id][currentMetric]); }
           })
           .style("fill-opacity",0.75);
 
         g.select("#points").selectAll(".poi").remove();
 
         //if there is a highlighted neighborhood then rehighlightit.
-        if(highlightedCounty) {
-          highlightNeigborhood(highlightedCounty, true);
+        if(highlightedNeighborhood) {
+          highlightNeigborhood(highlightedNeighborhood, true);
         }
 
         redrawPoints();
@@ -327,7 +330,7 @@ function populateNavPanel(data) {
 
     $menu.empty();
 
-    if (type === 'county') {
+    if (type === 'neighborhood') {
       _.chain(fields).groupBy('category').each(function (fields, category) {
         $menu.append(categoryTemplate(category));
         _.forEach(fields, function (field) {
@@ -343,13 +346,12 @@ function populateNavPanel(data) {
 
   // event listeners for changing d3
   // choropleth color change
-  // edit county***************
   $(".layer-toggle-menu > li").on("click", "a", function(e){
     e.preventDefault();
     if (!$(this).parent().hasClass('disabled')){
       currentMetric=(typeof $(this).attr("id")==="undefined")?null:$(this).attr("id");
       getSource(source_data,currentMetric);
-      changeCountyData(currentMetric);
+      changeNeighborhoodData(currentMetric);
       $(this).parent().addClass("selected").siblings().removeClass("selected");
       $("#legend-panel").show();
       $("#details p.lead").show();
@@ -387,8 +389,8 @@ function populateNavPanel(data) {
     $$parent.toggleClass("selected");
   });
 }
-//edit county*********************
-function changeCountyData(new_data_column) {
+
+function changeNeighborhoodData(new_data_column) {
   var data_values = _.filter(_.map(choropleth_data, function(d){ return parseFloat(d[new_data_column]); }), function(d){ return !isNaN(d); });
   var jenks = _.filter(_.unique(ss.jenks(data_values, 5)), function(d){ return !isNaN(d); });
 
@@ -402,25 +404,24 @@ function changeCountyData(new_data_column) {
     .domain(jenks.slice(1,-1))
     .range(color_palette);
   choropleth_data.forEach(function(d) {
-    choropleth_data[d.geoid] = +d[new_data_column];
+    choropleth_data[d.gis_id] = +d[new_data_column];
   });
-//edit county***********************
-// edit gis_id to geoid**************
-  g.select("#county").selectAll("path")
+
+  g.select("#neighborhoods").selectAll("path")
     .transition().duration(600)
     .style("fill", function(d) {
-      if(typeof all_data[d.properties.geoid] ==="undefined" ||
-        all_data[d.properties.geoid].population_total < min_population ||
-        !all_data[d.properties.geoid][new_data_column] ||
-        all_data[d.properties.geoid][currentMetric] === '0'){
+      if(typeof all_data[d.properties.gis_id] ==="undefined" ||
+        all_data[d.properties.gis_id].population_total < min_population ||
+        !all_data[d.properties.gis_id][new_data_column] ||
+        all_data[d.properties.gis_id][currentMetric] === '0'){
         return defaultColor;
       } else {
-        return choro_color(all_data[d.properties.geoid][new_data_column]);
+        return choro_color(all_data[d.properties.gis_id][new_data_column]);
       }
     })
     .style("fill-opacity",0.75);
 
-  if(activeId && new_data_column !== "no_county_data") {
+  if(activeId && new_data_column !== "no_neighborhood_data") {
     setVisMetric(new_data_column, all_data[activeId][new_data_column]);
   } else {
     setVisMetric(null, null, true);
@@ -503,11 +504,11 @@ function redrawPoints() {
     drawPoints($(this).children('a').attr('id'));
   });
 }
-///edit dcps to public
+
 function drawPoints(type) {
   if (!type || type === "clear") { return; }
 
-  var isSchool = type === "public" || type === "charters",
+  var isSchool = type === "dcps" || type === "charters",
       packer = sm.packer(),
       color;
 
@@ -628,10 +629,10 @@ function drawChart(){
     .append("text").text("Over 18").attr("class","axisTitle").attr("text-anchor","middle").attr("x",0).attr("y",-10);
 
   var ethdata = [
-    {name: "white", under18: 0.23, over18: 0.32},
-    {name: "black", under18: 0.60, over18: 0.55},
-    {name: "hispanic", under18: 0.10, over18: 0.06},
-    {name: "other", under18: 0.07, over18: 0.05}
+    {name: "white", under18: 0.193, over18: },
+    {name: "black", under18: 0.625, over18: },
+    {name: "hispanic", under18: 0.136, over18: },
+    {name: "other", under18: 0.123, over18: }
   ];
 
   var ethnicity = chartSvg.selectAll(".ethnicity")
@@ -792,11 +793,11 @@ function displayPopBox(d) {
   if($("#main-container")[0].classList.contains("toggled")) {
     toggleMenu();
   }
-// edit gis_id to geoid**************
-  var $popbox = $("#pop-info"),
-      highlighted = d ? all_data[d.properties.geoid] : all_data.de;
 
-  d3.select(".county").html(highlighted.CNTY_NAMES);
+  var $popbox = $("#pop-info"),
+      highlighted = d ? all_data[d.properties.gis_id] : all_data.dc;
+
+  d3.select(".neighborhood").html(highlighted.NBH_NAMES);
 
   var val, key, typeDef;
   $.each($popbox.find("tr"), function(k, row){
@@ -815,7 +816,7 @@ function highlightNeigborhood(d, isOverlayDraw) {
   // }).getBounds();
   // gmap.fitBounds(polyBounds);
   removeNarrative();
-  highlightedCounty = d;
+  highlightedNeighborhood = d;
   var x, y, k;
 
   if (d && centered !== d) {
@@ -836,55 +837,54 @@ function highlightNeigborhood(d, isOverlayDraw) {
   if(!isOverlayDraw) {
     g.selectAll("path")
       .classed("active", centered && function(d) { return d === centered; });
-   // edit gis_id to geoid**************
+
     // if d is a neighborhood boundary and clicked
-    if (d && all_data[d.properties.geoid]){
+    if (d && all_data[d.properties.gis_id]){
       displayPopBox(d);
       //last neighborhood to display in popBox.
-      activeId = d.properties.geoid;
+      activeId = d.properties.gis_id;
       setVisMetric(activeData, all_data[activeId][activeData]);
       updateChart(all_data[activeId]);
     }
   } else {
-    g.selectAll("#path" + highlightedCounty.properties.CID).classed("active", true);
-    bringCountyToFront();
+    g.selectAll("#path" + highlightedNeighborhood.properties.NCID).classed("active", true);
+    bringNeighborhoodToFront();
   }
 }
 
-function bringCountyToFront() {
+function bringNeighborhoodToFront() {
   if (centered) {
-      var activeCounty = d3.select(".active");
-      activeCounty.each(function () {
+      var activeNeighborhood = d3.select(".active");
+      activeNeighborhood.each(function () {
         this.parentNode.appendChild(this);
       });
       return;
     }
 }
 
-function hoverCounty(d) {
+function hoverNeighborhood(d) {
   // keep active path as the displayed path.
   if($("path.active").length > 0) {
     // keep centered neighborhood path up front
-    bringCountyToFront();
+    bringNeighborhoodToFront();
     return;
   }
 
   //bring hovered neighborhood path to front.
-  var county = d3.select(d3.event.target);
-  county.each(function () {
+  var neighborhood = d3.select(d3.event.target);
+  neighborhood.each(function () {
     this.parentNode.appendChild(this);
   });
 
   //but also keep centered neighborhood path up front
-  bringCountyToFront();
+  bringNeighborhoodToFront();
 
-  if (d && all_data[d.properties.geoid]){
+  if (d && all_data[d.properties.gis_id]){
     displayPopBox(d);
     //last neighborhood to display in popBox.
-    // edit gis_id to geoid**************
-    activeId = d.properties.geoid;
+    activeId = d.properties.gis_id;
 
-    if (activeData !== "no_county_data") {
+    if (activeData !== "no_neighborhood_data") {
       setVisMetric(activeData, all_data[activeId][activeData]);
       updateChart(all_data[activeId]);
     } else {
@@ -941,7 +941,7 @@ function setVisMetric(metric, val, clear) {
     var typeDef = $metricType[0].id;
     typeDef = typeDef.slice(typeDef.lastIndexOf("_") + 1);
     $metric.text(metricText);
-    var newDesc = activeId === 'de ? '' : val === "" ? "N/A" : getDisplayValue(val, metricText, typeDef);
+    var newDesc = activeId === 'dc' ? '' : val === "" ? "N/A" : getDisplayValue(val, metricText, typeDef);
     $metricDesc.text(newDesc);
   }
 }
@@ -970,9 +970,9 @@ if (!google.maps.Polygon.prototype.getBounds) {
       return bounds;
   };
 }
-///**** change county
+
 function getSource(data, layerID){
-  if(layerID == "no_county_data"){
+  if(layerID == "no_neighborhood_data"){
     d3.select("#source-title").text("").attr("href",null);
   }
   data.forEach(function(d){
