@@ -172,7 +172,7 @@ function drawChoropleth(){
       zoom: 12,
       minZoom: 10,
       maxZoom: 14,
-      center: new google.maps.LatLng(39.058,-75.552),
+      center: new google.maps.LatLng(38.910,-75.527),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       streetViewControl: false,
       panControl: false,
@@ -213,8 +213,8 @@ function drawChoropleth(){
     );
 
     var maxBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(38.39,-75.88),
-      new google.maps.LatLng(39.87,-74.78)
+      new google.maps.LatLng(38.347,-75.891),
+      new google.maps.LatLng(39.907,-74.918)
     );
 
     // If a drag ends outside of our max bounds, bounce back to the default center.
@@ -629,10 +629,10 @@ function drawChart(){
     .append("text").text("Over 18").attr("class","axisTitle").attr("text-anchor","middle").attr("x",0).attr("y",-10);
 
   var ethdata = [
-    {name: "white", under18: 0.193, over18: },
-    {name: "black", under18: 0.625, over18: },
-    {name: "hispanic", under18: 0.136, over18: },
-    {name: "other", under18: 0.123, over18: }
+    {name: "white", under18: 0.193, over18:1 },
+    {name: "black", under18: 0.625, over18:2 },
+    {name: "hispanic", under18: 0.136, over18:3 },
+    {name: "other", under18: 0.123, over18:4 }
   ];
 
   var ethnicity = chartSvg.selectAll(".ethnicity")
