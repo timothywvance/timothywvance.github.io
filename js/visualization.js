@@ -159,11 +159,11 @@ function drawChoropleth(){
     });
 
     all_data.dc = {
-      NBH_NAMES: "Washington, DC",
-      population_total_val: 633736,
-      population_under_18_val: 107989,
-      single_mother_families_perc: 0.4263,
-      children_in_poverty_perc: 0.275
+      NBH_NAMES: "Delaware",
+      population_total_val: 935614,
+      population_under_18_val: 204247,
+      single_mother_families_perc: 0.42,
+      children_in_poverty_perc: 0.18
     };
 
     displayPopBox();
