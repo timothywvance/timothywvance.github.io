@@ -1,7 +1,8 @@
 layer,source,url
-families_under_5,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-Pop_16,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-juv_arrest,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-births_single,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-farms,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-child_pov,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+population_total_val,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+population_under_18_val,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+single_mother_families_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+children_in_poverty_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+families_under_5_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+juv_arrest_val,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
+farms_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
