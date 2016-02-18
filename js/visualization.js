@@ -169,9 +169,9 @@ function drawChoropleth(){
     displayPopBox();
 
     gmap = new google.maps.Map(d3.select("#content").node(), {
-      zoom: 10,
-      minZoom: 10,
-      maxZoom: 10,
+      zoom: 7,
+      minZoom: 7,
+      maxZoom: 7,
       center: new google.maps.LatLng(38.910,-75.527),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       streetViewControl: false,
