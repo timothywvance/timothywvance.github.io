@@ -170,9 +170,9 @@ function drawChoropleth(){
 
     gmap = new google.maps.Map(d3.select("#content").node(), {
       zoom: 8,
-      minZoom: 6,
-      maxZoom: 12,
-      center: new google.maps.LatLng(38.910,-75.527),
+      minZoom: 8,
+      maxZoom: 10,
+      center: new google.maps.LatLng(38.91082,-75.52767),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       streetViewControl: false,
       panControl: false,
@@ -213,8 +213,8 @@ function drawChoropleth(){
     );
 
     var maxBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(37.800,-80.000),
-      new google.maps.LatLng(40.200,-72.000)
+      new google.maps.LatLng(36.988294,-80.963745),
+      new google.maps.LatLng(40.825241,-69.483032)
     );
 
     // If a drag ends outside of our max bounds, bounce back to the default center.
