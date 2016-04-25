@@ -57,17 +57,45 @@
     <ul class="nav nav-pills nav-stacked neighborhood-menu">
       <li class="nav-header disabled"><a>Neighborhood Demographics</a></li>
         <li><a id="population_total_val" href="#">Total Population</a></li>
-        <li><a id="population_under_18_val" href="#">Population Under 18</a></li>
-        <li><a id="families_under_5_perc" href="#">Families with young children under 5</a></li>
-        <li><a id="children_in_poverty_perc" href="#">Children in Poverty</a></li>
-        <li class="nav-header disabled"><a>Child Health & Wellbeing</a></li>
-        <li><a id="single_mother_families_perc" href="#">Births to single mothers</a></li>
-        <li><a id="juv_arrest_val" href="#">Juvenile Arrests</a></li>
-        <li><a id="farms_perc" href="#">Free and Reduced Price Meals</a></li>
-        <li class="nav-header disabled"><a>Child Success</a></li>
-        <li class="nav-header disabled"><a>Child Care</a></li>
-        <li class="nav-header disabled"><a>Neighborhood Assets</a></li>
-        <li class="nav-header disabled"><a>Neighborhood Violent Crime</a></li>
+        <li><a id="population_under_18_val" href="#">Children (Under 18)</a></li>
+        <li><a id="population_under_5_val" href="#">Young Child Population (Under 5)</a></li>
+        <li><a id="total_neighborhood_poverty_perc" href="#">Neighborhood Poverty Rate</a></li>
+        <li><a id="children_in_poverty_perc" href="#">Percentage of Children in Poverty</a></li>
+        <li><a id="single_mother_families_perc" href="#">Percentage of Children in Single Mother Families</a></li>
+        <li><a id="youth_ready_to_work_perc" href="#">Youth Employment Rate (Ages 16 to 24)</a><li>
+      <li class="nav-header disabled"><a>Child Health & Wellbeing</a></li>
+        <li><a id="medicaid_enroll_val" href="#">Children Enrolled in Medicaid</a></li>
+        <li><a id="prev_med_visit_val" href="#">Preventative Medical Visits by Children Enrolled in Medicaid</a></li>
+        <li><a id="dental_visit_val" href="#">Dental Visits by Children Enrolled in Medicaid</a></li>
+        <li><a id="er_ast_10_val" href="#">Asthma-Related ER Visits for Children</a></li>
+        <li><a id="fs_client_2012_val" href="#">Number of SNAP Recipients (Children & Adults)</a></li>
+      <li class="nav-header disabled"><a>Child Success</a></li>
+        <li><a id="math_perc" href="#">Percentage of Students Proficient in DC CAS (Math)</a></li>
+        <li><a id="reading_perc" href="#">Percentage of Students Proficient in DC CAS (Reading)</a></li>
+      <li class="nav-header disabled"><a>Child Care</a></li>
+        <li><a id="cc_cap_val" href="#">Infant/Toddler Child Care Capacity</a></li>
+        <li><a id="cc_pop_ratio" href="#">Ratio of Infant/Toddler Child Care Capacity to Under 3 Population</a></li>
+        <li><a id="cc_child_pov_ratio" href="#">Ratio of Infant/Toddler Child Care Capacity to Under 5 Poverty</a></li>
+        <!-- <li><a id="cc_sub_13_cur" href="#">Infant/Toddler Child Care Subsidies</a></li> -->
+      <li class="nav-header disabled"><a>Neighborhood Assets</a></li>
+        <li><a id="homeownership_perc" href="#">Percentage of Housing Units Owner Occupied</a></li>
+        <li><a id="vacants_val" href="#">Number of Properties Vacant</a></li>
+        <li><a id="libraries_val" href="#">Number of Public Libraries</a></li>
+        <li><a id="grocery_val" href="#">Number of Grocery Stores</a></li>
+        <li><a id="rec_val" href="#">Number of Recreation Centers</a></li>
+        <!-- <li><a id="metro_val" href="#">Number of WMATA Rail Stations</a></li> -->
+        <li><a id="bus_stops_val" href="#">Number of WMATA Bus Stops</a></li>
+      <li class="nav-header disabled"><a>Neighborhood Violent Crime</a></li>
+        <li><a id="total_crime_val" href="#">Total Violent Crime Count</a></li>
+        <li><a id="total_crime_pc_ratio" href="#">Total Violent Crime per 1,000 Residents</a></li>
+        <li><a id="homicide_val" href="#">Total Homicide Count</a></li>
+        <li><a id="homicide_pc_ratio" href="#">Homicides per 1,000 Residents</a></li>
+        <li><a id="assault_val" href="#">Total Assault with Deadly Weapon Count</a></li>
+        <li><a id="assault_pc_ratio" href="#">Assault with Deadly Weapon per 1,000 Residents</a></li>
+        <li><a id="robbery_val" href="#">Total Robbery Count</a></li>
+        <li><a id="robbery_pc_ratio" href="#">Robbery per 1,000 Residents</a></li>
+        <li><a id="sex_abuse_val" href="#">Total Sex Abuse Count</a></li>
+        <li><a id="sex_abuse_pc_ratio" href="#">Sex Abuse per 1,000 Residents</a></li>
     </ul>
   </div><!--/#nav-panel -->
         <div id="narrative" class="panel panel-default">
@@ -108,25 +136,25 @@
     <div class="panel-body">
       <p class="lead">
         <span id="visualized-metric">Total population</span><br />
-        <span id="visualized-measure">935,614</span>
+        <span id="visualized-measure">605,759</span>
       </p>
-      <h4 class="neighborhood">Delaware</h4>
+      <h4 class="neighborhood">Washington DC</h4>
       <table id="pop-info" class="table table-hover">
         <tr data-type="population_total_val">
           <td>Population (total)</td>
-          <td class="count align-right">935,614</td>
+          <td class="count align-right">605,759</td>
         </tr>
         <tr data-type="population_under_18_val">
           <td>Population (under 18)</td>
-          <td class="count align-right">204,247</td>
+          <td class="count align-right">103,986</td>
         </tr>
         <tr data-type="single_mother_families_perc">
           <td>Children in Single Mother Families</td>
-          <td class="count align-right">42%</td>
+          <td class="count align-right">48%</td>
         </tr>
         <tr data-type="children_in_poverty_perc">
           <td>Children in poverty</td>
-          <td class="count align-right">18%</td>
+          <td class="count align-right">29%</td>
         </tr>
       </table>
       <h4 class="chart">Demographic Breakdown</h4>
