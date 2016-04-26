@@ -2,14 +2,14 @@ api:
   acs_year: 2014
   acs_period: 5   # use 5-year estimates
 
-  # Return all wards for DC (state = 11)
+  # Return all counties for DE(state = 10)
   acs_geography:
-    for: {state+legislative+district+(upper+chamber): all}
-    in: {state: 11}
+    for: {counties): all}
+    in: {state: 10}
 
 output:
   directory: outputs
-  file: acs_SLDU_data.json
+  file: acs_county_data.json
   acs_variables: false
 
 # The following sections define output variables to be computed from ACS
