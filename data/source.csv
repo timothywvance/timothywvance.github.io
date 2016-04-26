@@ -1,8 +1,0 @@
-layer,source,url
-population_total_val,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-population_under_18_val,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-single_mother_families_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-children_in_poverty_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-families_under_5_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-juv_arrest_val,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
-farms_perc,ACS,http://factfinder2.census.gov/faces/nav/jsf/pages/programs.xhtml?program=acs
