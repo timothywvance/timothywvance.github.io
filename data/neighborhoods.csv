@@ -1,0 +1,4 @@
+gis_id,NAME,NBH_NAMES,NCID,population_total_val,population_under_18_val,single_mother_families_perc,children_in_poverty_perc,families_under_5_perc,juv_arrest_val,farms_perc
+Nbclus_003,Sussex,Sussex County,2,210849,173964,0.566,0.239,0.174,83,0.611
+Nbclus_001,Kent,Kent County,0,171987,135142,0.45,0.239,0.181,100,0.476
+Nbclus_002,New Castle,New Castle County,1,552778,445120,0.454,0.185,0.125,371,0.5
