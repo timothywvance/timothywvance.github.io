@@ -2,10 +2,10 @@ api:
   acs_year: 2014
   acs_period: 5   # use 5-year estimates
 
-  # Return all tracts for DC (state = 11)
+  # Return all wards for DC (state = 11)
   acs_geography:
-    for: {county: all}
-    in: {state: 23}
+    for: {state+legislative+district+(upper+chamber): all}
+    in: {state: 11}
 
 output:
   directory: outputs
@@ -30,10 +30,14 @@ fields_rename:
   total_neighborhood_poverty_denom: B17001_001E
   homeownership_denom: B11012_001E
   work_denom: B08303_001E
-  population_under_3: B09001_003E
+  population_under_3: B09001_003E  
   female_householder_no_husband_numer: B09002_015E
   female_householder_no_husband_denom: B09002_001E
-
+  median_family_income: B19119_001E
+  children_in_single_parent_denom: B09002_001E
+  children_married_fam_poverty_numer: B17006_003E
+  children_single_mother_fam_poverty_numer: B17006_012E
+  children_single_father_fam_poverty_numer: B17006_008E
 # Each variable in this section is defined by a list of ACS variables.
 # The named variable is computed by adding up the ACS variables.
 
@@ -85,14 +89,14 @@ fields_sum:
     - B17001_021E
     - B17001_022E
     - B17001_023E
-      
+    
   population_other_total:
     - B03002_005E
     - B03002_006E
     - B03002_007E
     - B03002_008E
     - B03002_009E
-
+      
   white_under_18:
     - B01001H_003E
     - B01001H_004E
@@ -186,11 +190,40 @@ fields_sum:
     - B15001_060E
     - B15001_068E
     - B15001_076E
+    
+  children_in_single_parent_numer:
+    - B09002_015E
+    - B09002_009E 
 
+  children_married_fam_poverty_denom:
+    - B17006_003E
+    - B17006_017E
+
+  children_single_father_fam_poverty_denom:
+    - B17006_008E
+    - B17006_022E 
+
+  children_single_mother_fam_poverty_denom:
+    - B17006_012E
+    - B17006_026E
+
+  black_under_5: 
+    - B01001B_003E
+    - B01001B_018E
+
+  hispanic_under_5: 
+    - B01001I_003E
+    - B01001I_018E
+  
+  white_under_5: 
+    - B01001H_003E
+    - B01001H_018E  
 
 # Each variable in this section is defined by a list of ACS variables.
 # The named variable is computed by starting with the first ACS variable and
 # subtracting the rest of the ACS variables.
+# To find the 'other' population over 18, manually subtract under 18 'other' population from total 'other' population'
+# To find population of other under subtract the black, white and Hispanic populations under 5 from total under 5
 
 fields_sub:
   white_18:
@@ -226,33 +259,6 @@ fields_sub:
     - B01001I_020E
     - B01001I_021E
 
-  other_18:
-    - B09001_001E
-    - B01001B_003E
-    - B01001B_004E
-    - B01001B_005E
-    - B01001B_006E
-    - B01001B_018E
-    - B01001B_019E
-    - B01001B_020E
-    - B01001B_021E
-    - B01001H_003E
-    - B01001H_004E
-    - B01001H_005E
-    - B01001H_006E
-    - B01001H_018E
-    - B01001H_019E
-    - B01001H_020E
-    - B01001H_021E
-    - B01001I_003E
-    - B01001I_004E
-    - B01001I_005E
-    - B01001I_006E
-    - B01001I_018E
-    - B01001I_019E
-    - B01001I_020E
-    - B01001I_021E
-
   other_under_18:
     - B09001_001E
     - B01001I_003E
@@ -279,7 +285,6 @@ fields_sub:
     - B01001H_019E
     - B01001H_020E
     - B01001H_021E
-
 
 # Each variable in this section is defined by a list of ACS variables.
 # The named variable is computed by multiplying the ACS variables together.

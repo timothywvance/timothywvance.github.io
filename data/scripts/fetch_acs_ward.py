@@ -30,11 +30,11 @@ def census_query(acs_variables, base_url, geo):
 
             # convert all values to ints except the geo identifiers
             for k in r.keys():
-                if r[k] is not None and k not in ["state", "county"]:
+                if r[k] is not None and k not in ["state", "state legislative district (upper chamber)"]:
                     r[k] = int(r[k])
 
             # tract ids in the neighborhood file include the state and county number
-            tract_id = "23" + r["county"]
+            tract_id = "11" + r["state legislative district (upper chamber)"]
             if tract_id in tracts:
                 tracts[tract_id].update(r)
             else:
@@ -49,7 +49,7 @@ class ConfigurationException(Exception): pass
 
 
 def main(args):
-    config_file = args.pop(0) if args else "config.yaml"
+    config_file = args.pop(0) if args else "config_ward.yaml"
     with open(config_file) as f:
         config = yaml.load(f.read())
 

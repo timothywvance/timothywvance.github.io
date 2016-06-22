@@ -1,11 +1,11 @@
 api:
-  acs_year: 2014
+  acs_year: 2011
   acs_period: 5   # use 5-year estimates
 
   # Return all tracts for DC (state = 11)
   acs_geography:
-    for: {county: all}
-    in: {state: 23}
+    for: {tract: all}
+    in: {state: 11}
 
 output:
   directory: outputs
