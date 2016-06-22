@@ -159,7 +159,7 @@ function drawChoropleth(){
     });
 
     all_data.dc = {
-      NBH_NAMES: "Delaware",
+      NBH_NAMES: "Maine",
       population_total_val: 935614,
       population_under_18_val: 204247,
       single_mother_families_perc: 0.42,
@@ -172,7 +172,7 @@ function drawChoropleth(){
       zoom: 7,
       minZoom: 6,
       maxZoom: 9,
-      center: new google.maps.LatLng(38.91082,-75.52767),
+      center: new google.maps.LatLng(45.2538,-69.4455),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       streetViewControl: false,
       panControl: false,
@@ -213,8 +213,8 @@ function drawChoropleth(){
     );
 
     var maxBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(36.988294,-80.963745),
-      new google.maps.LatLng(40.825241,-69.483032)
+      new google.maps.LatLng(43.149094,-73.624891),
+      new google.maps.LatLng(47.395091,-65.297232)
     );
 
     // If a drag ends outside of our max bounds, bounce back to the default center.
