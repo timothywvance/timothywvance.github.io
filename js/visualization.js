@@ -213,8 +213,8 @@ function drawChoropleth(){
     );
 
     var maxBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(42.522,-73.792),
-      new google.maps.LatLng(47.997,-62.057)
+      new google.maps.LatLng(42.697,-77.142),
+      new google.maps.LatLng(48.382,-61.697)
     );
 
     // If a drag ends outside of our max bounds, bounce back to the default center.
