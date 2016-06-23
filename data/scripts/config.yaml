@@ -2,14 +2,14 @@ api:
   acs_year: 2014
   acs_period: 5   # use 5-year estimates
 
-  # Return all tracts for DC (state = 11)
+  # Return all counties for Maine (state = 23)
   acs_geography:
     for: {county: all}
     in: {state: 23}
 
 output:
   directory: outputs
-  file: acs_tract_data.json
+  file: acs_county_data.json
   acs_variables: false
 
 # The following sections define output variables to be computed from ACS
