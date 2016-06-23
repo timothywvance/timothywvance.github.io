@@ -169,8 +169,8 @@ function drawChoropleth(){
     displayPopBox();
 
     gmap = new google.maps.Map(d3.select("#content").node(), {
-      zoom: 6,
-      minZoom: 5,
+      zoom: 7,
+      minZoom: 6,
       maxZoom: 8,
       center: new google.maps.LatLng(45.2538,-69.4455),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -214,7 +214,7 @@ function drawChoropleth(){
 
     var maxBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(42.522,-73.792),
-      new google.maps.LatLng(47.997,-61.697)
+      new google.maps.LatLng(47.997,-62.057)
     );
 
     // If a drag ends outside of our max bounds, bounce back to the default center.
