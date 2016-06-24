@@ -438,11 +438,12 @@ function changeNeighborhoodData(new_data_column) {
   };
 
   var legendText = function(d, jenks){
-    if(d == Math.min(jenks)) {
+    if(d == _.min(jenks)) {
       if (zeroElement) { return "0"; }
       return "Less than " + legendNumber(d);
-    } else if(d > Math.max(jenks)){
-      return legendNumber(Math.max(jenks)) + " and above";
+    } else if(d > _.max(jenks)){
+      if (jenks.length === 0) { return "0 and above"; }
+      return legendNumber(_.max(jenks)) + " and above";
     } else {
       return legendNumber(previousElement(d, jenks)) + " - " + legendNumber(d);
     }
