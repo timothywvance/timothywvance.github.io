@@ -160,17 +160,17 @@ function drawChoropleth(){
 
     all_data.dc = {
       NBH_NAMES: "Maine",
-      population_total_val: 935614,
-      population_under_18_val: 204247,
-      single_mother_families_perc: 0.42,
-      children_in_poverty_perc: 0.18
+      population_total_val: 1330089,
+      population_under_18_val: 258977,
+      single_mother_families_perc: 0.23,
+      children_in_poverty_perc: 0.19
     };
 
     displayPopBox();
 
     gmap = new google.maps.Map(d3.select("#content").node(), {
-      zoom: 7,
-      minZoom: 6,
+      zoom: 6,
+      minZoom: 5,
       maxZoom: 8,
       center: new google.maps.LatLng(45.2538,-69.4455),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
